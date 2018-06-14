@@ -1,0 +1,211 @@
+/*
+Etoiles
+*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+.rating {
+    border: none;
+    float: left;
+    position: absolute;
+    top: 55%;
+    bottom: 0;
+    left: 35%;
+    text-align: center;
+    em:1.5;
+}
+.listeEtoile ul {
+     margin: 0;
+     padding: 0;
+     list-style-type: none;
+ }
+.listeEtoile ul li {
+    display:inline-block;
+    width: 16px;
+    text-align: left;
+    list-style-type: none;
+}
+.listeEtoile ul li img {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.favorites{
+    border: none;
+    position: absolute;
+    top: 75%;
+    bottom: 0;
+    left: 43%;
+    text-align: center;
+}
+.coeur{
+    width: 40px;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Emoticones
+*/
+.coeur {
+   color: #ff0000;
+}
+
+.smiley {
+    color: #FFFF00;
+}
+.delete {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    opacity: 1;
+    color: red;
+}
+.fa-star-o {
+    color: #FFFF00;
+}
+.fa-film {
+    color: cornflowerblue;
+}
+
+
+
+
+
+/*
+Footer
+*/
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
+    line-height: 60px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-color: #d3e0e9;
+    z-index: 3;
+}
+
+
+/**
+Grille d'affichage
+ */
+.thumbnail>img, .thumbnail>a{
+    display: block;
+    max-width: 252,5px;  /*max-content*/
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 380px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 390px;
+    width: auto;
+    transition: .5s ease;
+    opacity: 0;
+    background-color: rgba(100,149,237,0.9);
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 0%;
+
+}
+.mosaique:hover .overlay {
+    opacity: 0.8;
+}
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.mosaique {
+    width: 280px;
+    height: auto;
+    padding-left: -10%;
+    padding-bottom: 50px;
+}
+
+.moyenne>img{
+    top: 0;
+    size: 1em;
+    height: 30px;
+    border-radius: 10px;
+}
+.moyenne{
+    margin-top: -52px;
+}
+
+
+
+
+
+/*
+For no result page
+*/
+ body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+     padding-bottom: 5vmax;
+}
+.full-height {
+    height: 40vw;
+}
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.position-ref {
+    position: relative;
+}
+.content {
+    text-align: center;
+}
+.title {
+    font-size: 36px;
+}
+
+.navbar-brand img{
+    margin-top: -16px;
+    max-height: 80px;
+}
+
+.navbar-header{
+    height: 64px;
+}
+
+.action{
+    align-content: center;
+    margin-top: 5px;
+    margin-left: 35px;
+    margin-right: 35px;
+}
