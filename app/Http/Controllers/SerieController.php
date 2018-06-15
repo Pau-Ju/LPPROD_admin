@@ -25,9 +25,7 @@ class SerieController extends Controller
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 12;
-
         $path=LengthAwarePaginator::resolveCurrentPath();
-
         $series = new LengthAwarePaginator(array_slice($series, $perPage * ($currentPage - 1), $perPage), count($series), $perPage, $currentPage,['path'=>$path]);
 
         return view('home', compact('series'));
@@ -49,18 +47,14 @@ class SerieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-
-
+    public function store(Request $request){
         request()->validate([
             'name' => 'required',
             'release_date' => 'required',
             'author' => 'required',
             'synopsis' => 'required'
         ]);
-        $uploaddiradm = public_path("images/");
-        $uploaddirpublic = '/srv/http/netflux/public/images/';
+
 
         $serie = new Serie();
         $serie->name = $request->name;
@@ -68,22 +62,33 @@ class SerieController extends Controller
         $serie->release_date = $request->release_date;
         $serie->synopsis = $request->synopsis;
 
+        //Traitement de l'image
        if($request->hasFile('image')) {
            $file = $request->file('image');
            $name = str_replace(' ', '_', strtolower($request->name)).".".$file->getClientOriginalExtension();
-           $dest = $uploaddiradm ;
-           $request->file('image')->move($dest, $name);
 
-            copy($dest.$name, $uploaddirpublic.$name);
+           $request->file('image')->move(public_path("images/"), $name);
+
+            copy(public_path("images/").$name, '/srv/http/netflux/public/images/'.$name);
            $serie->image_link = '/images/' . $name;
        }
+
+
+       //Traitement archive de sous-titres
+        if($request->hasFile('subtitles')) {
+            $file = $request->file('subtitles');
+            $name = str_replace(' ', '_', strtolower($request->name)).".".$file->getClientOriginalExtension();
+
+            $request->file('subtitles')->move(public_path("temp/"), $name);
+
+            exec("java -jar /home/netflux/Bureau/inserbase.jar " .public_path("temp/"). $name);
+        }
+
+
         $serie->save();
-
-
         $this->setIDF();
 
         return redirect()->route('home')
-
             ->with('success','Série crée avec succès');
     }
 
@@ -154,6 +159,15 @@ class SerieController extends Controller
                                         'author'=>$request->author,
                                         'synopsis'=>$request->synopsis
                                         ]);
+        }
+        //Traitement archive de sous-titres
+        if($request->hasFile('subtitles')) {
+            $file = $request->file('subtitles');
+            $name = str_replace(' ', '_', strtolower($request->name)).".".$file->getClientOriginalExtension();
+
+            $request->file('subtitles')->move(public_path("temp/"), $name);
+
+            exec("java -jar /home/netflux/Bureau/inserbase.jar " .public_path("temp/"). $name);
         }
 
 

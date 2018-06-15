@@ -84,7 +84,7 @@ class Serie extends Model
                              GROUP BY s.name, s.image_link, s.id_Serie
                              ORDER BY s.name)
                              union
-                             (SELECT se.name as name, se.id_Serie as id_Serie, se.image_link as image_link, 3 as moyenne
+                             (SELECT se.name as name, se.id_Serie as id_Serie, se.image_link as image_link, 0 as moyenne
                              FROM series as se
                              WHERE se.id_Serie not in (SELECT  distinct notes.id_Notes_Serie as id_Serie 
 													 FROM notes )
