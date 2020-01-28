@@ -1,0 +1,32 @@
+Connexion à la machine : 
+	-user=	netflux	
+	-mdp =	$LP_gt1d
+
+
+Connecxion au SGBD :
+	Compte avec tous les droits :
+		-user= root
+		-mdp = toor
+	Compte public : 
+		-user= public
+		-mdp =	$LP_gt1d
+	Compte admin : 
+		-user= admin
+		-mdp = I'm4dmin
+
+
+
+Les comptes présents sur le site :
+	-public
+		-user= test@test.fr
+		-mdp = tttttt
+
+	-admin*
+		-user= admin@lpprod.fr
+		-mdp = tttttt
+
+
+
+*(l'enregistrement est désactivé. Pour les activer décommenter les lignes dans 
+			/srv/http/admin-panel/routes/web.php
+		la confirmation du compte par mail n'est pas configuré pour la partie admin)
